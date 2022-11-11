@@ -39,7 +39,7 @@ typedef struct data
 	int counter;
 	char **_environ;
 	char *pid;
-} h_shell;
+} data_shell;
 
 /**
  * struct sep_list_s - single linked list
@@ -128,12 +128,12 @@ void rev_string(char *s);
 int repeated_char(char *input, int i);
 int error_sep_op(char *input, int i, char last);
 int first_char(char *input, int *i);
-void print_syntax_error(h_shell *hsh, char *input, int i, int bool);
-int check_syntax_error(h_shell *hsh, char *input);
+void print_syntax_error(data_shell *datash, char *input, int i, int bool);
+int check_syntax_error(data_shell *datash, char *input);
 
 /* shell_loop.c */
 char *without_comment(char *in);
-void shell_loop(h_shell *hsh);
+void shell_loop(data_shell *datash);
 
 /* read_line.c */
 char *read_line(int *i_eof);
@@ -141,54 +141,54 @@ char *read_line(int *i_eof);
 /* split.c */
 char *swap_char(char *input, int bool);
 void add_nodes(sep_list **head_s, line_list **head_l, char *input);
-void go_next(sep_list **list_s, line_list **list_l, h_shell *hsh);
-int split_commands(h_shell *hsh, char *input);
+void go_next(sep_list **list_s, line_list **list_l, data_shell *datash);
+int split_commands(data_shell *datash, char *input);
 char **split_line(char *input);
 
 /* rep_var.c */
-void check_env(r_var **h, char *in, h_shell *data);
-int check_vars(r_var **h, char *in, char *st, h_shell *data);
+void check_env(r_var **h, char *in, data_shell *data);
+int check_vars(r_var **h, char *in, char *st, data_shell *data);
 char *replaced_input(r_var **head, char *input, char *new_input, int nlen);
-char *rep_var(char *input, h_shell *hsh);
+char *rep_var(char *input, data_shell *datash);
 
 /* get_line.c */
 void bring_line(char **lineptr, size_t *n, char *buffer, size_t j);
 ssize_t get_line(char **lineptr, size_t *n, FILE *stream);
 
 /* exec_line.c */
-int exec_line(h_shell *hsh);
+int exec_line(data_shell *datash);
 
 /* exec_cmd.c */
 int is_cdir(char *path, int *i);
 char *_which(char *cmd, char **_environ);
-int is_executable(h_shell *hsh);
-int check_error_cmd(char *dir, h_shell *hsh);
+int is_executable(data_shell *datash);
+int check_error_cmd(char *dir, data_shell *datash);
 int cmd_exec(h_shell *hsh);
 
 /* environ1.c */
 char *_getenv(const char *name, char **_environ);
-int _env(h_shell *hsh);
+int _env(data_shell *datash);
 
 /* environ2.c */
 char *copy_info(char *name, char *value);
-void set_env(char *name, char *value, h_shell *hsh);
-int _setenv(h_shell *hsh);
-int _unsetenv(h_shell *hsh);
+void set_env(char *name, char *value, data_shell *datash);
+int _setenv(data_shell *datash);
+int _unsetenv(data_shell *datash);
 
 /* cd.c */
-void cd_dot(h_shell *hsh);
-void cd_to(h_shell *hsh);
-void cd_previous(h_shell *hsh);
-void cd_to_home(h_shell *hsh);
+void cd_dot(data_shell *datash);
+void cd_to(data_shell *datash);
+void cd_previous(data_shell *datash);
+void cd_to_home(data_shell *datash);
 
 /* cd_shell.c */
-int cd_shell(h_shell *hsh);
+int cd_shell(data_shell *datash);
 
 /* get_builtin */
-int (*get_builtin(char *cmd))(h_shell *hsh);
+int (*get_builtin(char *cmd))(data_shell *datash);
 
 /* exit_shell.c */
-int exit_shell(h_shell *hsh);
+int exit_shell(data_shell *datash);
 
 /* get_stdlib.c */
 int get_len(int n);
@@ -196,21 +196,21 @@ char *aux_itoa(int n);
 int _atoi(char *s);
 
 /* get_error1.c */
-char *strcat_cd(h_shell *, char *, char *, char *);
-char *error_get_cd(h_shell *hsh);
-char *error_not_found(h_shell *hsh);
-char *error_exit_shell(h_shell *hsh);
+char *strcat_cd(data_shell *, char *, char *, char *);
+char *error_get_cd(data_shell *datash);
+char *error_not_found(data_shell *datash);
+char *error_exit_shell(data_shell *datash);
 
 /*get_ error2.c */
 char *error_get_alias(char **args);
-char *error_env(h_shell *hsh);
+char *error_env(data_shell *datash);
 char *error_syntax(char **args);
 char *error_permission(char **args);
-char *error_path_126(h_shell *hsh);
+char *error_path_126(data_shell *datash);
 
 
 /* get_error.c */
-int get_error(h_shell *hsh, int eval);
+int get_error(data_shell *datash, int eval);
 
 /* get_sigint.c */
 void get_sigint(int sig);
@@ -228,6 +228,6 @@ void help_alias(void);
 void help_cd(void);
 
 /* get_help.c */
-int get_help(h_shell *hsh);
+int get_help(data_shell *datash);
 
 #endif /* SHELL_H */

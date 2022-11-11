@@ -53,24 +53,24 @@ char *_getenv(const char *name, char **_environ)
 
 /**
  * _env - prints the evironment variables
- * @hsh: data relevant.
+ * @datash: data relevant.
  *
  * Return: 1 on success.
  */
-int _env(h_shell *hsh)
+int _env(data_shell *datash)
 {
 	int i, j;
 
-	for (i = 0; hsh->_environ[i]; i++)
+	for (i = 0; datash->_environ[i]; i++)
 	{
 
-		for (j = 0; hsh->_environ[i][j]; j++)
+		for (j = 0; datash->_environ[i][j]; j++)
 			;
 
-		write(STDOUT_FILENO, hsh->_environ[i], j);
+		write(STDOUT_FILENO, datash->_environ[i], j);
 		write(STDOUT_FILENO, "\n", 1);
 	}
-	hsh->status = 0;
+	datash->status = 0;
 
 	return (1);
 }

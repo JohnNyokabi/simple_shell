@@ -2,21 +2,21 @@
 
 /**
  * exec_line - finds builtins and commands
- * @hsh: relevant arguments
+ * @datash: relevant arguments
  *
  * Return: 1 on success.
  */
-int exec_line(h_shell *hsh)
+int exec_line(data_shell *datash)
 {
-	int (*builtin)(h_shell *hsh);
+	int (*builtin)(data_shell *datash);
 
-	if (hsh->args[0] == NULL)
+	if (datash->args[0] == NULL)
 		return (1);
 
-	builtin = get_builtin(hsh->args[0]);
+	builtin = get_builtin(datash->args[0]);
 
 	if (builtin != NULL)
-		return (builtin(hsh));
+		return (builtin(datash));
 
-	return (cmd_exec(hsh));
+	return (cmd_exec(datash));
 }
