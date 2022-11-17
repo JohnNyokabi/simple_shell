@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "shell.h"
 
 /**
  * check_env - checks if the typed variable is an env variable
@@ -181,5 +181,5 @@ char *rep_var(char *input, data_shell *datash)
 
 	return (new_input);
 }
-Footer
+
 

@@ -89,7 +89,7 @@ typedef struct r_var_list
 typedef struct builtin_s
 {
 	char *name;
-	int (*f)(h_shell *hsh);
+	int (*f)(data_shell *datash);
 } builtin_t;
 
 /* aux_lists.c */
@@ -163,7 +163,7 @@ int is_cdir(char *path, int *i);
 char *_which(char *cmd, char **_environ);
 int is_executable(data_shell *datash);
 int check_error_cmd(char *dir, data_shell *datash);
-int cmd_exec(h_shell *hsh);
+int cmd_exec(data_shell *datash);
 
 /* environ1.c */
 char *_getenv(const char *name, char **_environ);
